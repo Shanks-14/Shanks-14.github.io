@@ -1,0 +1,19 @@
+{
+  "name": "shashank-shetty-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "3D interactive portfolio for Shashank Shetty — Data Analyst",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "three": "^0.185.1"
+  }
+}

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shashank Shetty — Data Analyst</title>
+  <meta name="description" content="Shashank Shetty — Data Analyst specialising in SQL, Python, Azure and business intelligence reporting. An interactive 3D portfolio." />
+  <meta name="theme-color" content="#0B1220" />
+
+  <meta property="og:title" content="Shashank Shetty — Data Analyst" />
+  <meta property="og:description" content="SQL • Python • Azure • Data Visualisation — interactive 3D portfolio" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <noscript>
+    <style>
+      /* Without JS, GSAP/ScrollTrigger never run, so force every reveal
+         element to its final visible state instead of leaving it at the
+         CSS-authored opacity: 0 resting state. */
+      .reveal-up, .reveal-line { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Custom cursor (hidden automatically on touch devices via JS) -->
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!--  NAVIGATION  -->
+  <header class="site-header" id="site-header">
+    <div class="nav-wrap container">
+      <a href="#top" class="logo" aria-label="Shashank Shetty — home" data-cursor="link">
+        <span class="logo-mark">SS</span><span class="logo-dot">.</span>
+      </a>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <!-- <span class="nav-comment">-- sections</span> -->
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link" data-cursor="link">About</a></li>
+          <li><a href="#skills" class="nav-link" data-cursor="link">Skills</a></li>
+          <li><a href="#experience" class="nav-link" data-cursor="link">Experience</a></li>
+          <li><a href="#projects" class="nav-link" data-cursor="link">Projects</a></li>
+          <li><a href="#education" class="nav-link" data-cursor="link">Education</a></li>
+          <li><a href="#contact" class="nav-link" data-cursor="link">Contact</a></li>
+        </ul>
+        <a href="./resume/Shashank_Shetty_Resume.pdf" class="btn btn-ghost nav-cta" data-cursor="link" download>
+          <span class="mono">↓</span> Resume
+        </a>
+      </nav>
+
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!--  HERO  -->
+    <section class="hero" id="top">
+      <canvas id="hero-canvas" class="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-fade" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <!-- <p class="eyebrow mono">-- welcome</p> -->
+
+          <div class="query-console glass" id="query-console" role="img" aria-label="SQL query returning Shashank Shetty's professional profile">
+            <div class="console-bar">
+              <span class="console-dot dot-r"></span>
+              <span class="console-dot dot-y"></span>
+              <span class="console-dot dot-g"></span>
+              <span class="console-title mono">profile.sql</span>
+            </div>
+            <pre class="console-body mono"><code><span id="typed-query"></span><span class="cursor-blink" id="type-cursor">&#9608;</span></code></pre>
+            <div class="console-result" id="console-result" aria-hidden="true">
+              <div class="table-scroll">
+                <table class="result-table">
+                  <thead>
+                    <tr><th>name</th><th>title</th><th>based_in</th><th>experience</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Shashank&nbsp;Shetty</td>
+                      <td>Data&nbsp;Analyst</td>
+                      <td>Galway&nbsp;→&nbsp;Ireland</td>
+                      <td>4+&nbsp;yrs</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="result-meta mono">1 row returned</p>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="reveal-line">I turn raw data into</span>
+            <span class="reveal-line accent-underline">decisions people trust.</span>
+          </h1>
+          <p class="hero-sub reveal-line">
+            Data Analyst with 4+ years reconciling, validating and reporting on complex datasets,
+            now completing an MSc in Information Systems Management at the University of Galway.
+            I build the SQL, dashboards and pipelines that let teams stop arguing about the numbers
+            and start acting on them.
+          </p>
+
+          <div class="hero-actions reveal-line">
+            <a href="#contact" class="btn btn-primary" data-cursor="link">Get in touch</a>
+            <a href="#experience" class="btn btn-outline" data-cursor="link">See my work</a>
+          </div>
+
+          <ul class="hero-tags mono reveal-line" aria-label="Work authorisation">
+            <li>Stamp&nbsp;1G</li>
+            <li>No visa sponsorship required</li>
+            <li>Open to Relocation</li>
+          </ul>
+        </div>
+
+        <aside class="hero-stats" aria-label="Key career metrics">
+          <div class="stat-card glass tilt" data-count="4" data-suffix="+">
+            <span class="stat-num mono">0</span>
+            <span class="stat-label">Years in data analysis &amp; QA</span>
+          </div>
+          <div class="stat-card glass tilt" data-count="30" data-suffix="%">
+            <span class="stat-num mono">0</span>
+            <span class="stat-label">Improvement in data accuracy</span>
+          </div>
+          <div class="stat-card glass tilt" data-count="35" data-suffix="%">
+            <span class="stat-num mono">0</span>
+            <span class="stat-label">Faster reporting cycle time</span>
+          </div>
+          <div class="stat-card glass tilt" data-count="40" data-suffix="%">
+            <span class="stat-num mono">0</span>
+            <span class="stat-label">Less manual validation effort</span>
+          </div>
+        </aside>
+      </div>
+
+      <button class="scroll-cue mono" id="scroll-cue" aria-label="Scroll to About section" data-cursor="link">
+        <span>scroll</span>
+        <span class="scroll-cue-line"></span>
+      </button>
+    </section>
+
+    <!--  ABOUT  -->
+    <section class="section" id="About">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- about</p> -->
+        <h2 class="section-title reveal-up">The short version</h2>
+
+        <div class="about-grid">
+          <div class="about-text reveal-up">
+            <p>
+              I'm an MSc graduate in Information Systems Management (National University of Galway) with
+              four years of hands-on experience turning messy operational data into reporting that
+              engineering, product and QA teams actually rely on. My background spans e-commerce
+              retail analytics at Purple Style Labs and gameplay telemetry &amp; QA analysis on AAA
+              titles at Ubisoft two very different domains, one consistent focus: accuracy first.
+            </p>
+            <p>
+              I'm most useful in the gap between "the data exists" and "the business can trust it"
+              writing the SQL, building the validation frameworks, and packaging the results into
+              dashboards and reports that hold up under scrutiny. I've picked up Azure and AWS cloud
+              fundamentals along the way, and I'm currently deepening that with a major project
+              comparing real-time stream and batch processing for predictive analytics.
+            </p>
+            <p>
+              Outside the day job: I like clean pipelines, well-indexed tables, and reports that
+              don't need a follow-up meeting to explain them.
+            </p>
+          </div>
+
+          <div class="about-facts reveal-up">
+            <dl class="fact-list mono glass">
+              <div class="fact-row">
+                <dt>location</dt>
+                <dd>Galway, Ireland</dd>
+              </div>
+              <div class="fact-row">
+                <dt>relocating_to</dt>
+                <dd>Anywhere</dd>
+              </div>
+              <div class="fact-row">
+                <dt>status</dt>
+                <dd>Stamp 1G · no sponsorship needed</dd>
+              </div>
+              <div class="fact-row">
+                <dt>focus</dt>
+                <dd>SQL · Python · BI Reporting</dd>
+              </div>
+              <div class="fact-row">
+                <dt>education</dt>
+                <dd>MSc ISM, Univ. of Galway — 2:1</dd>
+              </div>
+              <div class="fact-row">
+                <dt>availability</dt>
+                <dd>Open to opportunities</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  SKILLS  -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- schema</p> -->
+        <h2 class="section-title reveal-up">What I work with</h2>
+        <p class="section-lede reveal-up">
+          Organised the way I'd organise a database: each table below is a skill set, each row a
+          tool I use in production. Tilt them — they're not flat.
+        </p>
+
+        <div class="schema-grid">
+
+          <article class="schema-table glass tilt reveal-up">
+            <header class="schema-head">
+              <span class="mono schema-name">data_analysis</span>
+              <span class="mono schema-count">6 rows</span>
+            </header>
+            <ul class="schema-rows">
+              <li><span>SQL</span><em class="mono">MS SQL · MySQL · PostgreSQL</em></li>
+              <li><span>Python</span><em class="mono">pandas, scripting</em></li>
+              <li><span>EDA</span><em class="mono">exploratory analysis</em></li>
+              <li><span>Statistical thinking</span><em class="mono">core</em></li>
+              <li><span>Apache Spark</span><em class="mono">distributed</em></li>
+              <li><span>REST APIs</span><em class="mono">integration</em></li>
+            </ul>
+          </article>
+
+          <article class="schema-table glass tilt reveal-up">
+            <header class="schema-head">
+              <span class="mono schema-name">reporting_viz</span>
+              <span class="mono schema-count">4 rows</span>
+            </header>
+            <ul class="schema-rows">
+              <li><span>Matplotlib / Seaborn</span><em class="mono">charting</em></li>
+              <li><span>Dashboard development</span><em class="mono">stakeholder-facing</em></li>
+              <li><span>Management reporting</span><em class="mono">MI outputs</em></li>
+              <li><span>Excel</span><em class="mono">pivot tables, adv.</em></li>
+            </ul>
+          </article>
+
+          <article class="schema-table glass tilt reveal-up">
+            <header class="schema-head">
+              <span class="mono schema-name">data_quality</span>
+              <span class="mono schema-count">5 rows</span>
+            </header>
+            <ul class="schema-rows">
+              <li><span>Validation</span><em class="mono">pre-release</em></li>
+              <li><span>Reconciliation</span><em class="mono">structured checks</em></li>
+              <li><span>Root cause analysis</span><em class="mono">investigative</em></li>
+              <li><span>Data cleaning</span><em class="mono">pipeline-ready</em></li>
+              <li><span>Quality controls</span><em class="mono">accuracy gates</em></li>
+            </ul>
+          </article>
+
+          <article class="schema-table glass tilt reveal-up">
+            <header class="schema-head">
+              <span class="mono schema-name">cloud_platforms</span>
+              <span class="mono schema-count">5 rows</span>
+            </header>
+            <ul class="schema-rows">
+              <li><span>Microsoft Azure</span><em class="mono">AZ-900</em></li>
+              <li><span>Azure SQL Database</span><em class="mono">managed DB</em></li>
+              <li><span>AWS</span><em class="mono">EMR, S3, Kinesis, Flink</em></li>
+              <li><span>Apache Spark</span><em class="mono">on EMR</em></li>
+              <li><span>REST APIs</span><em class="mono">cloud-native</em></li>
+            </ul>
+          </article>
+
+          <article class="schema-table glass tilt reveal-up">
+            <header class="schema-head">
+              <span class="mono schema-name">collaboration</span>
+              <span class="mono schema-count">5 rows</span>
+            </header>
+            <ul class="schema-rows">
+              <li><span>Stakeholder comms</span><em class="mono">tech + non-tech</em></li>
+              <li><span>Agile / Scrum</span><em class="mono">sprint delivery</em></li>
+              <li><span>JIRA</span><em class="mono">tracking</em></li>
+              <li><span>Documentation</span><em class="mono">clear &amp; reusable</em></li>
+              <li><span>Independent delivery</span><em class="mono">self-directed</em></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!--  EXPERIENCE  -->
+    <section class="section" id="experience">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- work_history</p> -->
+        <h2 class="section-title reveal-up">Where I've delivered</h2>
+
+        <ol class="timeline">
+
+          <li class="timeline-item reveal-up">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card glass tilt">
+              <div class="timeline-head">
+                <div>
+                  <h3 class="timeline-role">Data Analyst</h3>
+                  <p class="timeline-org">Purple Style Labs Private Limited · Mumbai, India</p>
+                </div>
+                <span class="timeline-date mono">2022 — 2025</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Used SQL to retrieve, manipulate and analyse structured and unstructured data, supporting product and engineering decision-making.</li>
+                <li>Designed and delivered analytical reports and MI outputs, translating complex findings for technical and non-technical stakeholders.</li>
+                <li>Built a SQL-based validation &amp; reconciliation framework, lifting data accuracy by <strong>~30%</strong> across release cycles.</li>
+                <li>Automated reporting workflows with Python (pandas) and Selenium, cutting reporting cycle time by <strong>~35%</strong>.</li>
+                <li>Built reusable Python validation scripts, reducing manual effort by <strong>~40%</strong> and improving consistency.</li>
+                <li>Ran root-cause analysis on data discrepancies across logs and DB records ahead of downstream reporting.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span class="tag">SQL</span><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Selenium</span><span class="tag">Agile</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline-item reveal-up">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="timeline-card glass tilt">
+              <div class="timeline-head">
+                <div>
+                  <h3 class="timeline-role">Data &amp; QA Analyst</h3>
+                  <p class="timeline-org">Ubisoft Entertainment Pvt. Ltd. · Pune, India</p>
+                  <p class="timeline-note mono">AAA titles: Assassin's Creed, Far Cry 6</p>
+                </div>
+                <span class="timeline-date mono">2020 — 2022</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Analysed high-volume gameplay, event and telemetry data to surface behavioural anomalies and quality issues.</li>
+                <li>Maintained structured reporting documentation and test-case datasets, improving MI visibility for the QA team.</li>
+                <li>Introduced a structured weekly reporting method, improving accuracy and visibility of quality trends by <strong>15%</strong>.</li>
+                <li>Worked across international teams to validate datasets and improve defect-tracking in JIRA and TestRail.</li>
+                <li>Spotted statistical patterns in recurring defects, enabling earlier detection and fewer late-stage issues.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span class="tag">Telemetry</span><span class="tag">JIRA</span><span class="tag">TestRail</span><span class="tag">QA Analytics</span>
+              </div>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!--  PROJECTS  -->
+    <section class="section section-alt" id="projects">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- academic_projects</p> -->
+        <h2 class="section-title reveal-up">What I've been building at Galway</h2>
+
+        <div class="project-grid">
+
+          <article class="project-card glass tilt reveal-up">
+            <div class="project-top">
+              <span class="project-tag mono">MSc Major Project · 2025–2026</span>
+              <h3 class="project-title">Real-Time Stream vs Batch Processing for Predictive Analytics</h3>
+            </div>
+            <p class="project-desc">
+              A two-phase empirical study on CSO Ireland's national electricity dataset — engineering
+              a 10-dimensional feature set with lag features, rolling statistics and cyclical
+              encodings, then comparing batch and streaming model performance.
+            </p>
+            <ul class="project-points">
+              <li>Batch (Gradient Boosting) reached R² ≈ 1.0; streaming (SGD) delivered 2.5× lower latency.</li>
+              <li>Architected cloud-native pipelines on AWS EMR/Spark and Kinesis/Flink.</li>
+              <li>Communicated evidence-based recommendations to technical and non-technical audiences.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Python</span><span class="tag">AWS EMR</span><span class="tag">Kinesis</span><span class="tag">Flink</span><span class="tag">scikit-learn</span>
+            </div>
+          </article>
+
+          <article class="project-card glass tilt reveal-up">
+            <div class="project-top">
+              <span class="project-tag mono">Academic Project · 2025–2026</span>
+              <h3 class="project-title">SmartCare — Cloud-Based Patient Appointment &amp; Consultation System</h3>
+            </div>
+            <p class="project-desc">
+              A relational system for booking and managing patient consultations, built to get
+              hands-on with Azure's managed data services end-to-end.
+            </p>
+            <ul class="project-points">
+              <li>Designed the relational schema and built RESTful APIs on Azure SQL Database with access controls.</li>
+              <li>Produced architecture diagrams and deployment documentation for a non-technical audience.</li>
+              <li>Directly applicable to Azure Databricks, Fabric and semantic-model environments.</li>
+            </ul>
+            <div class="timeline-tags">
+              <span class="tag">Azure SQL</span><span class="tag">REST APIs</span><span class="tag">Python</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!--  EDUCATION  -->
+    <section class="section" id="education">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- education</p> -->
+        <h2 class="section-title reveal-up">Education &amp; certifications</h2>
+
+        <div class="edu-grid">
+          <div class="edu-card glass tilt reveal-up">
+            <span class="edu-date mono">Sept 2025 — Jun 2026</span>
+            <h3 class="edu-degree">MSc in Information Systems Management</h3>
+            <p class="edu-school">National University of Ireland, Galway · Grade 2:1</p>
+            <p class="edu-detail">Advanced Analytics (Python) · Database Systems (SQL) · Cloud Computing · Statistical Methods · Business Modelling &amp; Decision Support</p>
+          </div>
+          <div class="edu-card glass tilt reveal-up">
+            <span class="edu-date mono">Aug 2016 — Sept 2020</span>
+            <h3 class="edu-degree">BEng in Instrumentation Engineering</h3>
+            <p class="edu-school">University of Mumbai · GPA 6.62 / 10</p>
+            <p class="edu-detail">Quantitative discipline with a strong foundation in mathematics, statistics and data systems.</p>
+          </div>
+        </div>
+
+        <div class="cert-block reveal-up">
+          <h3 class="cert-heading mono">certifications &amp; achievements</h3>
+          <div class="cert-chips">
+            <span class="chip">Microsoft Azure Fundamentals (AZ-900)</span>
+            <span class="chip">AWS Cloud Practitioner (CLF-C02)</span>
+            <span class="chip">Robotics &amp; IoT — IIT Mumbai</span>
+            <span class="chip">Raspberry Pi &amp; Python — RAIT Mumbai</span>
+            <span class="chip">Winner, Chrysalis 2019</span>
+            <span class="chip">2nd Runner-Up, Srijan 2019</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  CONTACT  -->
+    <section class="section section-contact" id="contact">
+      <div class="container">
+        <!-- <p class="eyebrow mono reveal-up">-- contact</p> -->
+        <h2 class="section-title reveal-up">Let's talk data</h2>
+        <p class="section-lede reveal-up">
+          Open to Data Analyst and BI roles in Dublin and across Ireland. The fastest way to reach
+          me is email — I usually reply within a day.
+        </p>
+
+        <div class="contact-grid">
+          <ul class="contact-list reveal-up">
+            <li>
+              <span class="contact-label mono">email</span>
+              <a href="mailto:shashank.shettywk@gmail.com" class="contact-value" data-cursor="link">shashank.shettywk@gmail.com</a>
+              <button class="copy-btn mono" data-copy="shashank.shettywk@gmail.com" type="button" data-cursor="link">copy</button>
+            </li>
+            <li>
+              <span class="contact-label mono">phone</span>
+              <a href="tel:+353870342374" class="contact-value" data-cursor="link">+353 87 034 2374</a>
+            </li>
+            <li>
+              <span class="contact-label mono">linkedin</span>
+              <a href="https://www.linkedin.com/in/shashank-shetty-346685183/" class="contact-value" id="linkedin-link" target="_blank" rel="noopener" data-cursor="link">linkedin.com/in/shashank-shetty</a>
+            </li>
+            <li>
+              <span class="contact-label mono">github</span>
+              <a href="https://github.com/Shanks-14" class="contact-value" id="github-link" target="_blank" rel="noopener" data-cursor="link">github.com/shashank-shetty</a>
+            </li>
+            <li>
+              <span class="contact-label mono">location</span>
+              <span class="contact-value">Galway, Ireland — Open to Relocation</span>
+            </li>
+          </ul>
+
+          <form class="contact-form glass reveal-up" id="contact-form" novalidate>
+            <div class="form-row">
+              <label for="cf-name" class="mono">name</label>
+              <input type="text" id="cf-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label for="cf-email" class="mono">email</label>
+              <input type="email" id="cf-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label for="cf-message" class="mono">message</label>
+              <textarea id="cf-message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" data-cursor="link">
+              Send message
+            </button>
+            <!-- <p class="form-hint mono" id="form-hint">Opens your email client — no data is stored or sent to a server.</p> -->
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!--  FOOTER  -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="mono">© <span id="year"></span> Shashank Shetty — built with Three.js, GSAP &amp; vanilla JS.</p>
+      <button class="back-to-top mono" id="back-to-top" type="button" aria-label="Back to top" data-cursor="link">↑ top</button>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
