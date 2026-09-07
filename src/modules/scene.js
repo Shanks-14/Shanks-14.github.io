@@ -1,24 +1,7 @@
 /**
  * scene.js — the hero's WebGL background: a "data constellation."
- *
- * Concept: a wireframe icosahedron (representing a structured schema/graph)
- * sits inside a loose shell of drifting particles (unstructured data),
- * connected by a handful of live "query lines" that pulse between the
- * structured core and the particle field — a visual metaphor for turning
- * raw data into a defined shape, which is the whole pitch of the page.
- *
- * Design goals baked into this file:
- *  - Never block the main thread for long: geometry is generated once,
- *    the animation loop only updates rotations/positions.
- *  - Never runs when it can't be seen: an IntersectionObserver stops the
- *    render loop the moment the hero scrolls out of view, and the Page
- *    Visibility API stops it when the tab is backgrounded.
- *  - Respects prefers-reduced-motion: renders one static frame instead of
- *    a continuous animation loop.
- *  - Degrades cleanly if WebGL isn't available at all: init() returns
- *    false and the caller just leaves the canvas empty (the hero's CSS
- *    gradient background is a perfectly fine fallback on its own).
- *  - Scales geometry complexity down on small / low-powered screens.
+ * (unchanged from the previous version — still the wireframe icosahedron +
+ * particle field + pulsing query lines. Restyled chrome sits on top of it.)
  */
 import * as THREE from 'three';
 
@@ -26,10 +9,6 @@ const COLOR_AMBER = 0xf2b84b;
 const COLOR_TEAL = 0x45d8c0;
 
 export class HeroScene {
-  /**
-   * @param {HTMLCanvasElement} canvas
-   * @param {HTMLElement} boundsEl - element whose size the canvas should match (the hero section)
-   */
   constructor(canvas, boundsEl) {
     this.canvas = canvas;
     this.boundsEl = boundsEl;
@@ -41,9 +20,9 @@ export class HeroScene {
     this.isVisible = true;
     this.frameId = null;
 
-    this.mouse = { x: 0, y: 0 }; // normalised -1..1
+    this.mouse = { x: 0, y: 0 };
     this.mouseTarget = { x: 0, y: 0 };
-    this.scrollProgress = 0; // 0 at top of hero, 1 once scrolled a full viewport past it
+    this.scrollProgress = 0;
 
     this._onResize = this._onResize.bind(this);
     this._onPointerMove = this._onPointerMove.bind(this);
@@ -52,7 +31,6 @@ export class HeroScene {
     this._tick = this._tick.bind(this);
   }
 
-  /** Returns true if the scene initialised successfully. */
   init() {
     if (!this._isWebGLAvailable()) return false;
 
@@ -93,7 +71,6 @@ export class HeroScene {
       window.addEventListener('pointermove', this._onPointerMove, { passive: true });
     }
 
-    // Pause rendering while the hero is scrolled out of view.
     if ('IntersectionObserver' in window) {
       this._observer = new IntersectionObserver(
         (entries) => {
@@ -109,7 +86,6 @@ export class HeroScene {
     }
 
     if (this.prefersReducedMotion) {
-      // Render a single static frame; no continuous loop.
       this._render();
     } else {
       this._start();
@@ -131,7 +107,6 @@ export class HeroScene {
   }
 
   _buildCore() {
-    // Wireframe icosahedron: the "structured schema."
     const geometry = new THREE.IcosahedronGeometry(2.1, 1);
     const edges = new THREE.EdgesGeometry(geometry);
     const lineMaterial = new THREE.LineBasicMaterial({
@@ -142,7 +117,6 @@ export class HeroScene {
     this.core = new THREE.LineSegments(edges, lineMaterial);
     this.group.add(this.core);
 
-    // Vertex points, slightly larger and amber, sitting on the same geometry.
     const pointsMaterial = new THREE.PointsMaterial({
       color: COLOR_AMBER,
       size: 0.06,
@@ -159,8 +133,6 @@ export class HeroScene {
     const radius = 4.6;
 
     for (let i = 0; i < count; i++) {
-      // Distribute points in a spherical shell (not a filled ball) so the
-      // field reads as a "cloud" around the core rather than noise inside it.
       const r = radius * (0.6 + Math.random() * 0.4);
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
@@ -186,9 +158,6 @@ export class HeroScene {
   }
 
   _buildQueryLines() {
-    // A handful of thin, slowly-pulsing lines connecting the core to a few
-    // particles — reads as "live queries" running between structured and
-    // unstructured data. Purely decorative, kept cheap (6 short segments).
     const material = new THREE.LineBasicMaterial({
       color: COLOR_AMBER,
       transparent: true,
@@ -214,8 +183,6 @@ export class HeroScene {
   }
 
   _onPointerMove(e) {
-    // Normalise to -1..1, only really meaningful near the hero at the top
-    // of the page, but harmless (and cheap) to track globally.
     this.mouseTarget.x = (e.clientX / window.innerWidth) * 2 - 1;
     this.mouseTarget.y = (e.clientY / window.innerHeight) * 2 - 1;
   }
@@ -258,8 +225,6 @@ export class HeroScene {
   _tick() {
     if (!this.isRunning) return;
 
-    // Smoothly ease the tracked mouse position (lerp) so the parallax
-    // feels fluid rather than snapping to the raw pointer position.
     this.mouse.x += (this.mouseTarget.x - this.mouse.x) * 0.04;
     this.mouse.y += (this.mouseTarget.y - this.mouse.y) * 0.04;
 
@@ -278,8 +243,6 @@ export class HeroScene {
       line.rotation.x = this.core.rotation.x * 0.6;
     });
 
-    // Scroll response: as the hero scrolls away, dolly the camera back and
-    // fade the whole group slightly so it recedes rather than just vanishing.
     const dolly = this.scrollProgress * 2.4;
     this.camera.position.z = 7.5 + dolly;
     const fade = 1 - this.scrollProgress * 0.7;
@@ -299,7 +262,6 @@ export class HeroScene {
     this.renderer.render(this.scene, this.camera);
   }
 
-  /** Fully tears down the scene and removes all listeners/GPU resources. */
   destroy() {
     this._stop();
     window.removeEventListener('resize', this._onResize);

@@ -19,10 +19,8 @@
 
   <noscript>
     <style>
-      /* Without JS, GSAP/ScrollTrigger never run, so force every reveal
-         element to its final visible state instead of leaving it at the
-         CSS-authored opacity: 0 resting state. */
       .reveal-up, .reveal-line { opacity: 1 !important; transform: none !important; }
+      .social-rail { display: none; }
     </style>
   </noscript>
 </head>
@@ -30,9 +28,29 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Custom cursor (hidden automatically on touch devices via JS) -->
+  <!-- Custom cursor: small dot + trailing ring, mouse-only -->
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Fixed vertical social rail (left edge) -->
+  <nav class="social-rail" aria-label="Social links">
+    <a href="https://github.com/Shanks-14" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub" data-cursor="link">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+        <path d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.29-1.69-1.29-1.69-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.55A10.53 10.53 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/shashank-shetty-346685183/" class="social-icon" target="_blank" rel="noopener" aria-label="LinkedIn" data-cursor="link">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.86-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/>
+      </svg>
+    </a>
+    <a href="mailto:shashank.shettywk@gmail.com" class="social-icon" aria-label="Email" data-cursor="link">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <rect x="2" y="4.5" width="20" height="15" rx="2.4"/>
+        <path d="M3 6.5 12 13l9-6.5"/>
+      </svg>
+    </a>
+  </nav>
 
   <!--  NAVIGATION  -->
   <header class="site-header" id="site-header">
@@ -41,14 +59,15 @@
         <span class="logo-mark">SS</span><span class="logo-dot">.</span>
       </a>
 
+      <a href="mailto:shashank.shettywk@gmail.com" class="header-contact mono" data-cursor="link">shashank.shettywk@gmail.com</a>
+
       <nav class="nav" id="primary-nav" aria-label="Primary">
-        <!-- <span class="nav-comment">-- sections</span> -->
         <ul class="nav-list">
-          <li><a href="#about" class="nav-link" data-cursor="link">About</a></li>
+          <li><a href="#About" class="nav-link" data-cursor="link">About</a></li>
+          <li><a href="#services" class="nav-link" data-cursor="link">Services</a></li>
           <li><a href="#skills" class="nav-link" data-cursor="link">Skills</a></li>
           <li><a href="#experience" class="nav-link" data-cursor="link">Experience</a></li>
-          <li><a href="#projects" class="nav-link" data-cursor="link">Projects</a></li>
-          <li><a href="#education" class="nav-link" data-cursor="link">Education</a></li>
+          <li><a href="#projects" class="nav-link" data-cursor="link">Work</a></li>
           <li><a href="#contact" class="nav-link" data-cursor="link">Contact</a></li>
         </ul>
         <a href="./resume/Shashank_Shetty_Resume.pdf" class="btn btn-ghost nav-cta" data-cursor="link" download>
@@ -71,7 +90,6 @@
 
       <div class="container hero-grid">
         <div class="hero-copy">
-          <!-- <p class="eyebrow mono">-- welcome</p> -->
 
           <div class="query-console glass" id="query-console" role="img" aria-label="SQL query returning Shashank Shetty's professional profile">
             <div class="console-bar">
@@ -150,10 +168,49 @@
       </button>
     </section>
 
+    <!--  SKILLS MARQUEE — single infinite band, right to left, pause on hover -->
+    <section class="marquee-section" aria-label="Core skills">
+      <div class="marquee-row">
+        <ul class="marquee-track">
+          <li class="marquee-card"><span class="marquee-num mono">01</span>SQL</li>
+          <li class="marquee-card"><span class="marquee-num mono">02</span>Python</li>
+          <li class="marquee-card"><span class="marquee-num mono">03</span>pandas</li>
+          <li class="marquee-card"><span class="marquee-num mono">04</span>Apache Spark</li>
+          <li class="marquee-card"><span class="marquee-num mono">05</span>Microsoft Azure</li>
+          <li class="marquee-card"><span class="marquee-num mono">06</span>AWS</li>
+          <li class="marquee-card"><span class="marquee-num mono">07</span>Power BI</li>
+          <li class="marquee-card"><span class="marquee-num mono">08</span>Excel</li>
+          <li class="marquee-card"><span class="marquee-num mono">09</span>JIRA</li>
+          <li class="marquee-card"><span class="marquee-num mono">10</span>REST APIs</li>
+          <li class="marquee-card"><span class="marquee-num mono">11</span>Reconciliation</li>
+          <li class="marquee-card"><span class="marquee-num mono">12</span>PostgreSQL</li>
+          <li class="marquee-card"><span class="marquee-num mono">13</span>Selenium</li>
+          <li class="marquee-card"><span class="marquee-num mono">14</span>Data Validation</li>
+          <!-- Duplicate set, hidden from assistive tech, exists purely so the
+               band has no visible seam: the track animates by exactly -50%,
+               and this second half is what scrolls into the gap. -->
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">01</span>SQL</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">02</span>Python</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">03</span>pandas</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">04</span>Apache Spark</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">05</span>Microsoft Azure</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">06</span>AWS</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">07</span>Power BI</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">08</span>Excel</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">09</span>JIRA</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">10</span>REST APIs</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">11</span>Reconciliation</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">12</span>PostgreSQL</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">13</span>Selenium</li>
+          <li class="marquee-card" aria-hidden="true"><span class="marquee-num mono">14</span>Data Validation</li>
+        </ul>
+      </div>
+    </section>
+
     <!--  ABOUT  -->
     <section class="section" id="About">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- about</p> -->
+        <p class="eyebrow mono reveal-up">(01) — About</p>
         <h2 class="section-title reveal-up">The short version</h2>
 
         <div class="about-grid">
@@ -163,10 +220,10 @@
               four years of hands-on experience turning messy operational data into reporting that
               engineering, product and QA teams actually rely on. My background spans e-commerce
               retail analytics at Purple Style Labs and gameplay telemetry &amp; QA analysis on AAA
-              titles at Ubisoft two very different domains, one consistent focus: accuracy first.
+              titles at Ubisoft — two very different domains, one consistent focus: accuracy first.
             </p>
             <p>
-              I'm most useful in the gap between "the data exists" and "the business can trust it"
+              I'm most useful in the gap between "the data exists" and "the business can trust it" —
               writing the SQL, building the validation frameworks, and packaging the results into
               dashboards and reports that hold up under scrutiny. I've picked up Azure and AWS cloud
               fundamentals along the way, and I'm currently deepening that with a major project
@@ -207,90 +264,169 @@
             </dl>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!--  SKILLS  -->
+    <!--  SERVICES — numbered list, large panel swaps on hover/scroll -->
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <p class="eyebrow mono reveal-up">(02) — Services</p>
+        <h2 class="section-title reveal-up">What I bring to a data team</h2>
+        <p class="section-lede reveal-up">Three things I'm consistently asked to own, wherever I land.</p>
+
+        <div class="services-grid reveal-up">
+          <ol class="services-list" id="services-list">
+            <li class="service-item active"
+                data-variant="0"
+                data-title="Data Quality &amp; Validation"
+                data-desc="SQL-based validation and reconciliation frameworks across release cycles — lifting data accuracy by ~30% by catching discrepancies before they reach a dashboard, not after.">
+              <span class="service-index mono">01</span>
+              <div class="service-item-copy">
+                <h3>Data Quality &amp; Validation</h3>
+                <div class="service-tags">
+                  <span class="tag">Reconciliation</span><span class="tag">Root cause analysis</span><span class="tag">Accuracy gates</span>
+                </div>
+              </div>
+              <svg class="service-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </li>
+            <li class="service-item"
+                data-variant="1"
+                data-title="Reporting &amp; Automation"
+                data-desc="Python and pandas pipelines that automate the reporting grind — Selenium-driven workflows that cut reporting cycle time by ~35% and reclaim hours every sprint.">
+              <span class="service-index mono">02</span>
+              <div class="service-item-copy">
+                <h3>Reporting &amp; Automation</h3>
+                <div class="service-tags">
+                  <span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Dashboards</span>
+                </div>
+              </div>
+              <svg class="service-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </li>
+            <li class="service-item"
+                data-variant="2"
+                data-title="Cloud &amp; Pipeline Architecture"
+                data-desc="Azure and AWS-native pipelines — EMR/Spark and Kinesis/Flink — built and documented clearly enough that a non-technical stakeholder can follow the data's journey.">
+              <span class="service-index mono">03</span>
+              <div class="service-item-copy">
+                <h3>Cloud &amp; Pipeline Architecture</h3>
+                <div class="service-tags">
+                  <span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">Spark</span>
+                </div>
+              </div>
+              <svg class="service-arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </li>
+          </ol>
+
+          <div class="services-panel" id="services-panel">
+            <div class="services-panel-inner" data-variant="0">
+              <div class="services-panel-visual" aria-hidden="true">
+                <div class="mock-chart mock-bars">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="mock-rows"><span></span><span></span><span></span></div>
+              </div>
+              <h3 class="services-panel-title">Data Quality &amp; Validation</h3>
+              <p class="services-panel-desc">SQL-based validation and reconciliation frameworks across release cycles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  SKILLS — stacking card deck, cards layer on top of each other while scrolling -->
     <section class="section section-alt" id="skills">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- schema</p> -->
+        <p class="eyebrow mono reveal-up">(03) — Skills</p>
         <h2 class="section-title reveal-up">What I work with</h2>
         <p class="section-lede reveal-up">
           Organised the way I'd organise a database: each table below is a skill set, each row a
-          tool I use in production. Tilt them — they're not flat.
+          tool I use in production. Keep scrolling — each card lands on top of the last.
         </p>
+      </div>
 
-        <div class="schema-grid">
+      <div class="skills-stack" id="skills-stack">
+        <div class="stack-viewport">
 
-          <article class="schema-table glass tilt reveal-up">
-            <header class="schema-head">
-              <span class="mono schema-name">data_analysis</span>
-              <span class="mono schema-count">6 rows</span>
-            </header>
-            <ul class="schema-rows">
-              <li><span>SQL</span><em class="mono">MS SQL · MySQL · PostgreSQL</em></li>
-              <li><span>Python</span><em class="mono">pandas, scripting</em></li>
-              <li><span>EDA</span><em class="mono">exploratory analysis</em></li>
-              <li><span>Statistical thinking</span><em class="mono">core</em></li>
-              <li><span>Apache Spark</span><em class="mono">distributed</em></li>
-              <li><span>REST APIs</span><em class="mono">integration</em></li>
-            </ul>
-          </article>
+          <div class="stack-card-wrap" data-index="0">
+            <article class="schema-table glass">
+              <header class="schema-head">
+                <span class="mono schema-name">data_analysis</span>
+                <span class="mono schema-count">01 / 05</span>
+              </header>
+              <ul class="schema-rows">
+                <li><span>SQL</span><em class="mono">MS SQL · MySQL · PostgreSQL</em></li>
+                <li><span>Python</span><em class="mono">pandas, scripting</em></li>
+                <li><span>EDA</span><em class="mono">exploratory analysis</em></li>
+                <li><span>Statistical thinking</span><em class="mono">core</em></li>
+                <li><span>Apache Spark</span><em class="mono">distributed</em></li>
+                <li><span>REST APIs</span><em class="mono">integration</em></li>
+              </ul>
+            </article>
+          </div>
 
-          <article class="schema-table glass tilt reveal-up">
-            <header class="schema-head">
-              <span class="mono schema-name">reporting_viz</span>
-              <span class="mono schema-count">4 rows</span>
-            </header>
-            <ul class="schema-rows">
-              <li><span>Matplotlib / Seaborn</span><em class="mono">charting</em></li>
-              <li><span>Dashboard development</span><em class="mono">stakeholder-facing</em></li>
-              <li><span>Management reporting</span><em class="mono">MI outputs</em></li>
-              <li><span>Excel</span><em class="mono">pivot tables, adv.</em></li>
-            </ul>
-          </article>
+          <div class="stack-card-wrap" data-index="1">
+            <article class="schema-table glass">
+              <header class="schema-head">
+                <span class="mono schema-name">reporting_viz</span>
+                <span class="mono schema-count">02 / 05</span>
+              </header>
+              <ul class="schema-rows">
+                <li><span>Matplotlib / Seaborn</span><em class="mono">charting</em></li>
+                <li><span>Dashboard development</span><em class="mono">stakeholder-facing</em></li>
+                <li><span>Management reporting</span><em class="mono">MI outputs</em></li>
+                <li><span>Excel</span><em class="mono">pivot tables, adv.</em></li>
+              </ul>
+            </article>
+          </div>
 
-          <article class="schema-table glass tilt reveal-up">
-            <header class="schema-head">
-              <span class="mono schema-name">data_quality</span>
-              <span class="mono schema-count">5 rows</span>
-            </header>
-            <ul class="schema-rows">
-              <li><span>Validation</span><em class="mono">pre-release</em></li>
-              <li><span>Reconciliation</span><em class="mono">structured checks</em></li>
-              <li><span>Root cause analysis</span><em class="mono">investigative</em></li>
-              <li><span>Data cleaning</span><em class="mono">pipeline-ready</em></li>
-              <li><span>Quality controls</span><em class="mono">accuracy gates</em></li>
-            </ul>
-          </article>
+          <div class="stack-card-wrap" data-index="2">
+            <article class="schema-table glass">
+              <header class="schema-head">
+                <span class="mono schema-name">data_quality</span>
+                <span class="mono schema-count">03 / 05</span>
+              </header>
+              <ul class="schema-rows">
+                <li><span>Validation</span><em class="mono">pre-release</em></li>
+                <li><span>Reconciliation</span><em class="mono">structured checks</em></li>
+                <li><span>Root cause analysis</span><em class="mono">investigative</em></li>
+                <li><span>Data cleaning</span><em class="mono">pipeline-ready</em></li>
+                <li><span>Quality controls</span><em class="mono">accuracy gates</em></li>
+              </ul>
+            </article>
+          </div>
 
-          <article class="schema-table glass tilt reveal-up">
-            <header class="schema-head">
-              <span class="mono schema-name">cloud_platforms</span>
-              <span class="mono schema-count">5 rows</span>
-            </header>
-            <ul class="schema-rows">
-              <li><span>Microsoft Azure</span><em class="mono">AZ-900</em></li>
-              <li><span>Azure SQL Database</span><em class="mono">managed DB</em></li>
-              <li><span>AWS</span><em class="mono">EMR, S3, Kinesis, Flink</em></li>
-              <li><span>Apache Spark</span><em class="mono">on EMR</em></li>
-              <li><span>REST APIs</span><em class="mono">cloud-native</em></li>
-            </ul>
-          </article>
+          <div class="stack-card-wrap" data-index="3">
+            <article class="schema-table glass">
+              <header class="schema-head">
+                <span class="mono schema-name">cloud_platforms</span>
+                <span class="mono schema-count">04 / 05</span>
+              </header>
+              <ul class="schema-rows">
+                <li><span>Microsoft Azure</span><em class="mono">AZ-900</em></li>
+                <li><span>Azure SQL Database</span><em class="mono">managed DB</em></li>
+                <li><span>AWS</span><em class="mono">EMR, S3, Kinesis, Flink</em></li>
+                <li><span>Apache Spark</span><em class="mono">on EMR</em></li>
+                <li><span>REST APIs</span><em class="mono">cloud-native</em></li>
+              </ul>
+            </article>
+          </div>
 
-          <article class="schema-table glass tilt reveal-up">
-            <header class="schema-head">
-              <span class="mono schema-name">collaboration</span>
-              <span class="mono schema-count">5 rows</span>
-            </header>
-            <ul class="schema-rows">
-              <li><span>Stakeholder comms</span><em class="mono">tech + non-tech</em></li>
-              <li><span>Agile / Scrum</span><em class="mono">sprint delivery</em></li>
-              <li><span>JIRA</span><em class="mono">tracking</em></li>
-              <li><span>Documentation</span><em class="mono">clear &amp; reusable</em></li>
-              <li><span>Independent delivery</span><em class="mono">self-directed</em></li>
-            </ul>
-          </article>
+          <div class="stack-card-wrap" data-index="4">
+            <article class="schema-table glass">
+              <header class="schema-head">
+                <span class="mono schema-name">collaboration</span>
+                <span class="mono schema-count">05 / 05</span>
+              </header>
+              <ul class="schema-rows">
+                <li><span>Stakeholder comms</span><em class="mono">tech + non-tech</em></li>
+                <li><span>Agile / Scrum</span><em class="mono">sprint delivery</em></li>
+                <li><span>JIRA</span><em class="mono">tracking</em></li>
+                <li><span>Documentation</span><em class="mono">clear &amp; reusable</em></li>
+                <li><span>Independent delivery</span><em class="mono">self-directed</em></li>
+              </ul>
+            </article>
+          </div>
 
         </div>
       </div>
@@ -299,7 +435,7 @@
     <!--  EXPERIENCE  -->
     <section class="section" id="experience">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- work_history</p> -->
+        <p class="eyebrow mono reveal-up">(04) — Experience</p>
         <h2 class="section-title reveal-up">Where I've delivered</h2>
 
         <ol class="timeline">
@@ -356,61 +492,97 @@
       </div>
     </section>
 
-    <!--  PROJECTS  -->
-    <section class="section section-alt" id="projects">
+    <!--  SELECTED WORK — row list, hover for a preview, click for details  -->
+    <section class="section section-alt projects-section" id="projects">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- academic_projects</p> -->
-        <h2 class="section-title reveal-up">What I've been building at Galway</h2>
+        <p class="eyebrow mono reveal-up">(05) — Work</p>
+        <h2 class="section-title reveal-up">Selected <span class="accent-underline">work</span></h2>
+        <p class="section-lede reveal-up">
+          Hover a project to preview it, click for the full picture. Two academic builds from my MSc year — real datasets, real infrastructure.
+        </p>
 
-        <div class="project-grid">
+        <div class="work-list-wrap reveal-up">
+          <ol class="work-list" id="work-list">
 
-          <article class="project-card glass tilt reveal-up">
-            <div class="project-top">
-              <span class="project-tag mono">MSc Major Project · 2025–2026</span>
-              <h3 class="project-title">Real-Time Stream vs Batch Processing for Predictive Analytics</h3>
-            </div>
-            <p class="project-desc">
-              A two-phase empirical study on CSO Ireland's national electricity dataset — engineering
-              a 10-dimensional feature set with lag features, rolling statistics and cyclical
-              encodings, then comparing batch and streaming model performance.
-            </p>
-            <ul class="project-points">
-              <li>Batch (Gradient Boosting) reached R² ≈ 1.0; streaming (SGD) delivered 2.5× lower latency.</li>
-              <li>Architected cloud-native pipelines on AWS EMR/Spark and Kinesis/Flink.</li>
-              <li>Communicated evidence-based recommendations to technical and non-technical audiences.</li>
-            </ul>
-            <div class="timeline-tags">
-              <span class="tag">Python</span><span class="tag">AWS EMR</span><span class="tag">Kinesis</span><span class="tag">Flink</span><span class="tag">scikit-learn</span>
-            </div>
-          </article>
+            <li class="work-row"
+                data-variant="0"
+                data-name="Real-Time Stream vs Batch Processing"
+                data-niche="MSc Major Project · Predictive Analytics"
+                data-year="2025–26"
+                data-tools="Python, AWS EMR, Kinesis, Flink, scikit-learn"
+                data-description="A two-phase empirical study on CSO Ireland's national electricity dataset — engineering a 10-dimensional feature set with lag features, rolling statistics and cyclical encodings, then comparing batch and streaming model performance."
+                data-points="Batch (Gradient Boosting) reached R² ≈ 1.0; the streaming model (SGD) delivered 2.5× lower latency.|Architected cloud-native pipelines on AWS EMR/Spark and Kinesis/Flink.|Communicated evidence-based recommendations to technical and non-technical audiences.">
+              <div class="work-row-main">
+                <h3 class="work-row-title">Real-Time Stream vs Batch Processing for Predictive Analytics</h3>
+                <p class="work-row-sub">CSO Ireland electricity dataset · Python, AWS EMR, Kinesis, Flink, scikit-learn</p>
+              </div>
+              <div class="work-row-meta">
+                <span class="mono work-row-year">2025–26</span>
+                <span class="work-row-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                </span>
+              </div>
+            </li>
 
-          <article class="project-card glass tilt reveal-up">
-            <div class="project-top">
-              <span class="project-tag mono">Academic Project · 2025–2026</span>
-              <h3 class="project-title">SmartCare — Cloud-Based Patient Appointment &amp; Consultation System</h3>
-            </div>
-            <p class="project-desc">
-              A relational system for booking and managing patient consultations, built to get
-              hands-on with Azure's managed data services end-to-end.
-            </p>
-            <ul class="project-points">
-              <li>Designed the relational schema and built RESTful APIs on Azure SQL Database with access controls.</li>
-              <li>Produced architecture diagrams and deployment documentation for a non-technical audience.</li>
-              <li>Directly applicable to Azure Databricks, Fabric and semantic-model environments.</li>
-            </ul>
-            <div class="timeline-tags">
-              <span class="tag">Azure SQL</span><span class="tag">REST APIs</span><span class="tag">Python</span>
-            </div>
-          </article>
+            <li class="work-row"
+                data-variant="1"
+                data-name="SmartCare — Patient Appointment System"
+                data-niche="Academic Project · Cloud Platform"
+                data-year="2025–26"
+                data-tools="Azure SQL, REST APIs, Python"
+                data-description="A relational system for booking and managing patient consultations, built to get hands-on with Azure's managed data services end-to-end."
+                data-points="Designed the relational schema and built RESTful APIs on Azure SQL Database with access controls.|Produced architecture diagrams and deployment documentation for a non-technical audience.|Directly applicable to Azure Databricks, Fabric and semantic-model environments.">
+              <div class="work-row-main">
+                <h3 class="work-row-title">SmartCare — Cloud-Based Patient Appointment &amp; Consultation System</h3>
+                <p class="work-row-sub">Relational booking platform · Azure SQL, REST APIs, Python</p>
+              </div>
+              <div class="work-row-meta">
+                <span class="mono work-row-year">2025–26</span>
+                <span class="work-row-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                </span>
+              </div>
+            </li>
 
+          </ol>
+
+          <!-- Floating preview panel: hidden by default, tracks the cursor via JS -->
+          <div class="work-preview" id="work-preview" aria-hidden="true">
+            <div class="work-preview-inner" data-variant="0">
+              <div class="work-preview-visual">
+                <div class="mock-chart mock-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="mock-chart mock-line"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><polyline points="0,45 25,30 50,38 75,15 100,22 125,10 150,18 175,6 200,14"/></svg></div>
+              </div>
+              <p class="work-preview-niche mono"></p>
+              <p class="work-preview-title"></p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Project detail pop-up — same solid-card visual language as the Skills stack -->
+    <div class="work-modal" id="work-modal" aria-hidden="true">
+      <div class="work-modal-backdrop" data-close></div>
+      <div class="work-modal-card schema-table" role="dialog" aria-modal="true" aria-labelledby="work-modal-title">
+        <header class="schema-head">
+          <span class="mono schema-name" id="work-modal-niche">Project</span>
+          <button type="button" class="work-modal-close" aria-label="Close" data-close>&times;</button>
+        </header>
+        <div class="work-modal-body">
+          <span class="mono work-modal-year" id="work-modal-year"></span>
+          <h3 class="work-modal-title" id="work-modal-title"></h3>
+          <p class="work-modal-desc" id="work-modal-desc"></p>
+          <ul class="work-modal-points" id="work-modal-points"></ul>
+          <div class="work-modal-tags" id="work-modal-tags"></div>
+        </div>
+      </div>
+    </div>
+
     <!--  EDUCATION  -->
     <section class="section" id="education">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- education</p> -->
+        <p class="eyebrow mono reveal-up">(06) — Education</p>
         <h2 class="section-title reveal-up">Education &amp; certifications</h2>
 
         <div class="edu-grid">
@@ -445,7 +617,7 @@
     <!--  CONTACT  -->
     <section class="section section-contact" id="contact">
       <div class="container">
-        <!-- <p class="eyebrow mono reveal-up">-- contact</p> -->
+        <p class="eyebrow mono reveal-up">(07) — Contact</p>
         <h2 class="section-title reveal-up">Let's talk data</h2>
         <p class="section-lede reveal-up">
           Open to Data Analyst and BI roles in Dublin and across Ireland. The fastest way to reach
@@ -493,7 +665,7 @@
             <button type="submit" class="btn btn-primary form-submit" data-cursor="link">
               Send message
             </button>
-            <!-- <p class="form-hint mono" id="form-hint">Opens your email client — no data is stored or sent to a server.</p> -->
+            <p class="form-hint mono" id="form-hint"></p>
           </form>
         </div>
       </div>

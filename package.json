@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "3D interactive portfolio for Shashank Shetty — Data Analyst",
+  "description": "3D interactive portfolio for Shashank Shetty \u2014 Data Analyst",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

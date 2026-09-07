@@ -1,8 +1,7 @@
 /**
  * contactForm.js — no backend involved. The form composes a mailto: link
  * from the visitor's input and hands off to their email client; the copy
- * button uses the async Clipboard API with a manual fallback for browsers
- * that don't support it (or block it outside a secure context).
+ * button uses the async Clipboard API with a manual fallback. (unchanged)
  */
 export function initContactForm() {
   initCopyButton();

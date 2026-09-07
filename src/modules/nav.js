@@ -1,7 +1,7 @@
 /**
  * nav.js — header chrome: scrolled-state border, mobile slide-in menu,
  * active-link highlighting via IntersectionObserver, and anchor smooth
- * scroll with a correction for the fixed header's height.
+ * scroll with a correction for the fixed header's height. (unchanged)
  */
 export function initNav() {
   const header = document.getElementById('site-header');
@@ -62,7 +62,7 @@ export function initNav() {
 
   if (scrollCue) {
     scrollCue.addEventListener('click', () => {
-      const about = document.getElementById('about');
+      const about = document.getElementById('About') || document.getElementById('about');
       if (about) scrollToTarget(about);
     });
   }
@@ -73,13 +73,12 @@ export function initNav() {
     });
   }
 
-  // Active nav link highlighting.
   const sections = document.querySelectorAll('main section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
 
   function setActiveLink(id) {
     navLinks.forEach((link) => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      link.classList.toggle('active', link.getAttribute('href').toLowerCase() === `#${id.toLowerCase()}`);
     });
   }
 

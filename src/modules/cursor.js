@@ -1,17 +1,8 @@
 /**
- * cursor.js — a small dot + trailing ring that follows the pointer and
- * expands over interactive elements (anything with [data-cursor="link"],
- * plus native links/buttons as a safety net).
- *
- * Safety rails baked in:
- *  - Only activates on devices that report a fine pointer (mouse/trackpad)
- *    via a media query match, so touch devices never get `cursor: none`
- *    or a ghost cursor stuck on screen.
- *  - Re-checks that media query on every pointer event, so a 2-in-1
- *    laptop that switches between touch and mouse doesn't get stuck in
- *    the wrong mode.
- *  - Fully skips the animation loop (not just visually hides) when
- *    prefers-reduced-motion is set, or when the fine-pointer check fails.
+ * cursor.js — the original small dot + trailing ring cursor, restored.
+ * Only activates on devices with a fine pointer (mouse/trackpad); fully
+ * inert (and CSS-hidden) on touch. Skips the rAF trail loop under
+ * prefers-reduced-motion.
  */
 export function initCustomCursor() {
   const dot = document.getElementById('cursor-dot');
@@ -26,12 +17,7 @@ export function initCustomCursor() {
   let active = fine.matches;
   document.documentElement.classList.toggle('has-fine-pointer', active);
 
-  if (!active) {
-    // No mouse-like pointer at all — nothing further to do. The CSS rule
-    // `html:not(.has-fine-pointer) .cursor-dot/.cursor-ring { display: none }`
-    // keeps them hidden, and native cursors are left untouched.
-    return;
-  }
+  if (!active) return;
 
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
@@ -40,8 +26,6 @@ export function initCustomCursor() {
   let rafId = null;
 
   function onPointerMove(e) {
-    // A touchscreen dispatches pointer events with pointerType 'touch';
-    // ignore those so a finger tap doesn't drag the desktop cursor around.
     if (e.pointerType && e.pointerType !== 'mouse') return;
 
     mouseX = e.clientX;
@@ -55,7 +39,6 @@ export function initCustomCursor() {
   }
 
   function animateRing() {
-    // Ease the ring toward the raw mouse position for a soft trailing feel.
     ringX += (mouseX - ringX) * 0.18;
     ringY += (mouseY - ringY) * 0.18;
     ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
@@ -65,7 +48,6 @@ export function initCustomCursor() {
   window.addEventListener('pointermove', onPointerMove, { passive: true });
 
   if (prefersReducedMotion) {
-    // Snap instantly instead of running a continuous rAF loop.
     window.addEventListener(
       'pointermove',
       (e) => {
@@ -77,7 +59,6 @@ export function initCustomCursor() {
     rafId = requestAnimationFrame(animateRing);
   }
 
-  // Hide the custom cursor when the pointer leaves the viewport entirely.
   document.addEventListener('mouseleave', () => {
     dot.style.opacity = '0';
     ring.style.opacity = '0';

@@ -1,8 +1,6 @@
 /**
  * typewriter.js — types the hero's SQL query out character by character,
- * then reveals the "results" table underneath. Keeps its own lightweight
- * keyword highlighter rather than pulling in a syntax-highlighting
- * dependency for four SQL keywords.
+ * then reveals the "results" table underneath. (unchanged)
  */
 const QUERY_TEXT =
   'SELECT name, title, experience\n' +
@@ -56,6 +54,5 @@ export function initTypewriter() {
     }
   }
 
-  // Small delay so the hero's own entrance timeline has started first.
   setTimeout(step, 500);
 }

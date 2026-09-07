@@ -1,14 +1,9 @@
 /**
- * reveal.js — all GSAP-driven motion that isn't the 3D scene or the cursor:
+ * reveal.js — all GSAP-driven motion that isn't the 3D scene, the cursor,
+ * or the scroll-driven projects panel:
  *  - the hero's staggered entrance (title lines, subtext, CTAs, tags)
- *  - scroll-triggered reveals for every `.reveal-up` block (cards, section
- *    headers, etc.), batched per-section so items already inside the
- *    viewport on load animate together instead of one at a time
+ *  - scroll-triggered reveals for every `.reveal-up` block
  *  - the animated stat counters in the hero
- *
- * ScrollTrigger and all other GSAP plugins have been 100% free (including
- * for commercial use, no account/license key required) since Webflow's
- * acquisition of GreenSock in 2025 — see README.md for the source.
  */
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,9 +16,6 @@ export function initRevealAnimations() {
   ).matches;
 
   if (prefersReducedMotion) {
-    // Motion is disabled at the CSS level too (see main.css), but we still
-    // need to flip these elements to their visible state since GSAP would
-    // otherwise never touch them.
     gsap.set('.reveal-up, .reveal-line', { opacity: 1, y: 0 });
     animateCounters(true);
     return;
@@ -56,7 +48,13 @@ function heroIntro() {
       duration: 0.6,
       stagger: 0.08,
       clearProps: 'transform',
-    }, 0.3);
+    }, 0.3)
+    .from('.social-rail .social-icon', {
+      opacity: 0,
+      x: -16,
+      duration: 0.5,
+      stagger: 0.07,
+    }, 0.2);
 }
 
 function scrollReveals() {
@@ -71,15 +69,6 @@ function scrollReveals() {
         y: 0,
         duration: 0.7,
         ease: 'power3.out',
-        // Several `.reveal-up` elements are also `.tilt` cards, whose
-        // CSS-driven `transform` (perspective/rotateX/rotateY, updated by
-        // tilt.js on mousemove) would otherwise be permanently overridden
-        // by the inline `transform` GSAP leaves behind after animating `y`.
-        // clearProps hands the property back to CSS once the reveal finishes.
-        // Using fromTo (rather than to) also means GSAP owns the explicit
-        // starting transform itself instead of reading it off the CSS
-        // cascade, which avoids it ever trying to decompose `.tilt`'s
-        // perspective/rotateX matrix as a starting point.
         clearProps: 'transform',
         scrollTrigger: {
           trigger: el,

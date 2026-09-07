@@ -6,13 +6,14 @@ import { initRevealAnimations } from './modules/reveal.js';
 import { initNav } from './modules/nav.js';
 import { initTypewriter } from './modules/typewriter.js';
 import { initContactForm } from './modules/contactForm.js';
+import { initSelectedWork } from './modules/selectedWork.js';
+import { initServicesSwap } from './modules/servicesSwap.js';
+import { initSkillsStack } from './modules/skillsStack.js';
 
 /**
- * Each feature is wrapped in its own try/catch. The site is a portfolio —
- * if, say, WebGL context creation throws on some exotic browser/GPU combo,
- * that must never take the whole page down with it. Every module below is
- * independent: nav, form and content all keep working even if the 3D scene
- * or an animation library fails to initialise.
+ * Each feature is wrapped in its own try/catch — the site is a portfolio,
+ * and no single module (3D scene, bubble physics, scroll panel...) should
+ * ever be able to take the whole page down with it.
  */
 function safeInit(label, fn) {
   try {
@@ -32,18 +33,11 @@ function initHeroScene() {
   const hero = document.getElementById('top');
   if (!canvas || !hero) return;
 
-  // Three.js is ~150KB gzipped — dynamically imported so it never blocks
-  // the rest of the page (nav, content, form) from becoming interactive,
-  // and so Vite splits it into its own chunk that only loads when a hero
-  // section with a canvas actually exists.
   import('./modules/scene.js')
     .then(({ HeroScene }) => {
       const scene = new HeroScene(canvas, hero);
       const ok = scene.init();
       if (!ok) {
-        // WebGL unavailable or init failed — remove the canvas so it
-        // doesn't sit there blank; the hero's CSS gradient background
-        // looks intentional on its own.
         canvas.remove();
       }
     })
@@ -62,4 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit('3D card tilt', initTilt);
   safeInit('custom cursor', initCustomCursor);
   safeInit('contact form', initContactForm);
+  safeInit('selected work preview', initSelectedWork);
+  safeInit('services swap panel', initServicesSwap);
+  safeInit('skills stacking deck', initSkillsStack);
 });
